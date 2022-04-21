@@ -7,3 +7,4 @@ create table jdbc_member
 	constraint jdbc_id_pk primary key(id)
 );
 
+select * from JDBC_MEMBER;
