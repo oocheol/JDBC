@@ -2,7 +2,9 @@ package model;
 
 public class MemberVO {
 	
-	// 테이블 컬럼명과 일치시킬 것
+	// 1. 테이블 컬럼명과 필드명을 일치시킬 것
+	// 2. 모든 필드에 대해 Getter / Setter를 만들 것
+	
 	private String id;
 	private String pw;
 	private String nick;

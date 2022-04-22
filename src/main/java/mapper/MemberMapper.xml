@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 어떤 DAO에서 사용하는지 -->
+<mapper namespace="model.MemberDAO">
+
+   <!-- 
+      사용하고자 하는 SQL문과 같은 태그
+      ex)delete문 -> delete태그
+      
+      MyBatis 바인드 변수 => #{필드명}
+      parameterType = "넣어준 매개변수의 타입"
+      resultType = "결과를 담아줄 VO"
+   -->
+   
+    <insert 
+    id="join" 
+    parameterType="model.MemberVO">
+       insert into jdbc_member
+       values(#{id}, #{pw}, #{nick})
+    </insert>
+  
+  
+</mapper>
