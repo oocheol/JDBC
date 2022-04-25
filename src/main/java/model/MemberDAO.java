@@ -57,5 +57,15 @@ public class MemberDAO {
 		return cnt;
 
 	}
+	
+	public int login(MemberVO vo) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int cnt = session.selectOne("login", vo);
+		
+		session.close();
+		
+		return cnt;
+		
+	}
 
 }

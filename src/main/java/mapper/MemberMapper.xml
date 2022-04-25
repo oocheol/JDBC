@@ -20,6 +20,13 @@
        insert into jdbc_member
        values(#{id}, #{pw}, #{nick})
     </insert>
+    <insert 
+    id="login" 
+    parameterType="model.MemberVO">
+       select * from jdbc_member
+       where id = #{id}
+       and pw = #{pw}
+    </insert>
   
   
 </mapper>
