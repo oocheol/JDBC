@@ -20,13 +20,24 @@
        insert into jdbc_member
        values(#{id}, #{pw}, #{nick})
     </insert>
-    <insert 
+    
+    <!-- login -->
+    <select 
     id="login" 
-    parameterType="model.MemberVO">
+    parameterType="model.MemberVO"
+    resultType="model.MemberVO">
        select * from jdbc_member
        where id = #{id}
        and pw = #{pw}
-    </insert>
+    </select>
+    
+    <!-- 회원 전체 검색 -->
+    <select
+    id="select"
+    resultType="model.MemberVO"
+    >
+    	select * from jdbc_member
+    </select>
   
   
 </mapper>

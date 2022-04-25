@@ -23,20 +23,24 @@ public class LoginService extends HttpServlet {
 	      String pw = request.getParameter("pw");
 	      
 	      // VO(DTO)로 묶어주기
-	      MemberVO vo = new MemberVO(id, pw);
+	      MemberVO vo = new MemberVO();
+	      vo.setId(id);
+	      vo.setPw(pw);
 	      
 	      // 3. DAO메서드 사용
 	      MemberDAO dao = new MemberDAO();
-	      int cnt = dao.login(vo);
+	      MemberVO mvo = dao.login(vo);
 	      
-	      // 성공 유무 판단
-	      if(cnt > 0) {
-	         // main.html으로 이동
-	         response.sendRedirect("main.html");
-	      }else {
-	         // login.html로 이동
-	         response.sendRedirect("login.html");
+	      // 4. 결과에 따라 페이지 이동
+	      if(mvo == null) {
+	    	  System.out.println("로그인 실패");
+	    	  response.sendRedirect("login.html");
+	      } else {
+	    	  System.out.println("로그인 성공 : " + vo.getId());
+	    	  response.sendRedirect("main.html");
+	    	  
 	      }
+	      
 	}
 
 }

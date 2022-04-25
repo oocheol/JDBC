@@ -15,11 +15,6 @@ public class MemberVO {
 		this.pw = pw;
 		this.nick = nick;
 	}
-	public MemberVO(String id, String pw) {
-		super();
-		this.id = id;
-		this.pw = pw;
-	}
 	
 	public MemberVO() {
 		super();

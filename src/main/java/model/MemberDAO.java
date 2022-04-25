@@ -1,6 +1,7 @@
 package model;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -58,14 +59,37 @@ public class MemberDAO {
 
 	}
 	
-	public int login(MemberVO vo) {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		int cnt = session.selectOne("login", vo);
+	public MemberVO login(MemberVO vo) {
 		
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		// 2. SQL 문장 실행
+		MemberVO mvo = session.selectOne("login", vo);
+		
+		// 3. SqlSession 반환
 		session.close();
 		
-		return cnt;
+		return mvo;
+	}
+	
+	public List<MemberVO> select() {
+		// 1. SqlSession 빌려오기
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		// 2. SQL 문장 실행
+		// List -> ArrayList의 부모 클래스 
+		// 활용성을 위해 List 사용 ( ArrayList보다 상위 클래스이므로 받을 수 있는게 많아짐 )
+		// resultType에 VO만 써줘도, List<VO>으로 묶어줌
+		List<MemberVO> list = session.selectList("select");
+		
+		// 3. SqlSession 반환
+		session.close();
+		
+		// 4. 결과 리턴
+		return list;
 		
 	}
+	
 
 }
